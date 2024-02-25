@@ -1,0 +1,35 @@
+syntax = "proto3";
+package notebook.api.v1;
+
+option java_package = "com.mycompany.notebook.api.v1";
+option java_outer_classname = "NotebookPb";
+
+import "google/type/datetime.proto";
+
+service NotebookService {
+  rpc CreateNote(CreateNoteRequest) returns (CreateNoteResponse) {}
+  rpc GetNotes(GetNotesRequest) returns (GetNotesResponse) {}
+}
+
+message CreateNoteRequest {
+  string topic = 1;
+  string text = 2;
+}
+
+message CreateNoteResponse {
+  string message = 1;
+}
+
+message GetNotesRequest {
+  string topic = 1;
+}
+
+message GetNotesResponse {
+  Note note = 1;
+}
+
+message Note {
+  string topic = 1;
+  string text = 2;
+  google.type.DateTime timestamp = 3;
+}
